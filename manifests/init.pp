@@ -16,14 +16,22 @@ class pow {
     require => [File["${POW_ROOT}/Versions"]],
   }
 
-  $plist = "/Users/${id}/Library/LaunchAgents/cx.pow.powd.plist"
+  $LaunchAgents = "/Users/${id}/Library/LaunchAgents"
+  unless defined(File[$LaunchAgents]) {
+    file { "${LaunchAgents}":
+      ensure => directory,
+      mode   => '0755',
+    }
+  }
+
+  $plist = "${LaunchAgents}/cx.pow.powd.plist"
   exec { "Configuring Launch Agents":
     command     => "node ./pow --install-local",
     cwd         => $POW_BIN,
     path        => [$POW_BIN, '/usr/bin'],
     environment => ["HOME=/Users/${id}", "LOGNAME=${id}"],
     creates     => $plist,
-    require     => [Exec["Installing Pow v0.4.0"]],
+    require     => [File[$LaunchAgents], Exec["Installing Pow v0.4.0"]],
     notify      => [Exec["Starting Pow"]],
   }
 
