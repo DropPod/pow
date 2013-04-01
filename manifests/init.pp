@@ -31,7 +31,7 @@ class pow {
     path        => [$POW_BIN, '/usr/bin'],
     environment => ["HOME=/Users/${id}", "LOGNAME=${id}"],
     creates     => $plist,
-    require     => [File[$LaunchAgents], Exec["Installing Pow v0.4.0"]],
+    require     => [File[$LaunchAgents], File["${POW_ROOT}/Current"], Exec["Installing Pow v0.4.0"]],
     notify      => [Exec["Starting Pow"]],
   }
 
