@@ -1,6 +1,6 @@
 {
   "name": "DropPod/pow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "summary": "A basic module for managing Pow",
   "source": "https://github.com/DropPod/pow.git",
   "author": "Pieter van de Bruggen",

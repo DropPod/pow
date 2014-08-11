@@ -1,4 +1,4 @@
-class pow::sudo::post {
+class pow::sudo {
   $POW_ROOT = "/Users/${id}/Library/Application Support/Pow"
   $POW_BIN = "${POW_ROOT}/Current/bin"
 
